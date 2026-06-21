@@ -1,0 +1,483 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    /*    background colors     */
+    --intro-bg-clr: hsl(217, 28%, 15%);
+    --main-bg-clr: hsl(218, 28%, 13%);
+    --footer-bg-clr: hsl(216, 53%, 9%);
+    --testimonial-bg-clr: hsl(219, 30%, 18%);
+
+    /*     accent colors      */
+    --cta-gradient-teal: hsl(176, 68%, 64%);
+    --cta-gradient-cyan: hsl(198, 60%, 50%);
+    --error-state-clr: hsl(0, 100%, 63%);
+
+    /*    font settings    */
+    --ff-sans: 'Open Sans', sans-serif;
+    --ff-raleway: 'Raleway', Arial;
+    --fs-p: .875rem;
+    --font-clr-h: hsl(0, 0%, 100%);
+    --font-clr-p: hsl(0, 0%, 80%);
+    --fw-400: 400;
+    --fw-700: 700;
+}
+
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+img,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+body {
+    background-image: url('images/bg-curvy-desktop.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    font-size: var(--fs-p);
+    font-weight: var(--fw-400);
+    color: var(--font-clr-p);
+    font-family: var(--ff-sans);
+}
+
+/*                  Header Section                       */
+
+header {
+    padding: 3.5rem 3.5rem;
+    background-color: var(--intro-bg-clr);
+    border-bottom: 3px solid var(--intro-bg-clr);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--font-clr-h);
+    font-weight: var(--fw-700);
+    font-family: var(--ff-raleway);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links ul {
+    display: flex;
+    list-style-type: none;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    color: var(--font-clr-p);
+    font-family: var(--ff-raleway);
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+    color: var(--font-clr-h);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 3px solid var(--intro-bg-clr);
+    background-color: var(--intro-bg-clr);
+}                      
+
+section {
+    min-width: 100%;
+}
+
+section p {
+    font-weight: var(--fw-400);
+    color: var(--font-clr-p);
+}
+
+section:not(.cta-flex) {
+    background-color: var(--main-bg-clr);
+}
+
+/*                  Section 1                       */
+
+.cta-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-image: url('images/bg-curvy-desktop.svg');
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: contain;
+    z-index: 2;
+    padding-bottom: 3rem;
+}
+
+section.cta-flex .group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 45%;
+    gap: 2rem;
+}
+
+/*    Context: if the section has an h1 with a direct child of p, then apply these styles.    */
+.cta-flex:has(h1 + p) {
+    text-align: center;
+}
+/*    Sorry! Had to do it because the original code was messing with 
+      my other sections despite me CLEARLY stating for it to apply strictly to my
+      ".cta-flex" section. This took me about 10 minutes digging through the dev
+      tools to fix! So, I guess this is a great learning opportunity for something
+      supposedly NOT to do and how to diagnose this issue for those who spend the
+      time reading this. I guess it was Specificity being "too" specified that even
+      it got confused on how to apply it. :'D Alright, rant is over.      */
+
+section.cta-flex h1 {
+    font-weight: var(--fw-700);
+    font-size: 2rem;
+    max-width: 35ch;
+    line-height: 1.5;
+}
+
+section.cta-flex p {
+    font-size: clamp(var(--fs-p), 4vw, 1rem);
+    max-width: 53ch;
+    line-height: 1.7;
+}
+
+section.cta-flex button {
+    cursor: pointer;
+    min-width: 30%;
+    min-height: 2.5rem;
+    padding: 1rem 4.5rem;
+    color: var(--font-clr-h);
+    font-family: var(--ff-raleway);
+    font-weight: 700;
+    background-image: linear-gradient(to right, var(--cta-gradient-teal), var(--cta-gradient-cyan));
+    border-radius: 2rem;
+    border: none;
+    transition: 150ms ease-in-out;
+}
+
+.cta-flex button:hover,
+.cta-flex button:focus-visible {
+    background-image: linear-gradient(to right, hsl(176, 68%, 74%), hsl(198, 60%, 60%));
+}
+
+/*                  Section 2                       */
+
+.product-info-grid {
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, minmax(min(300px, 100%), 475px));
+    gap: 2rem;
+}
+
+.product-info-grid .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 3rem;
+    text-align: center;
+}
+
+.product-info-grid .card .group-text {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.product-info-grid .group-text h4 {
+    line-height: 1.1;
+}
+
+.product-info-grid .group-text p {
+    line-height: 1.25;
+}
+
+.productivity-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    padding-top: 5rem;
+    padding-bottom: 14rem;
+}
+
+.productivity-flex .group-flex {
+    display: flex;
+    flex-direction: column;
+    max-width: 60ch;
+    gap: 1rem;
+}
+
+.group-flex h2 {
+    font-size: calc(var(--fs-p) * 2);
+    line-height: 1.35;
+    max-width: 15ch;
+    padding-bottom: .25rem;
+}
+
+.group-flex p {
+    line-height: 1.45;
+}
+
+.group-flex:not(footer .group-flex) a {
+    display: flex;
+    gap: .25rem;
+    color: var(--cta-gradient-teal);
+    text-underline-offset: .5rem;
+    transition: all 150ms ease;
+}
+
+.group-flex.group-flex:not(footer .group-flex) a:hover {
+    color: var(--font-clr-p);
+}
+
+section.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 375px);
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-bottom: 8rem;
+}
+
+section.testimonial-grid article.testimonial {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding: 2.5rem 2rem;
+    gap: 1.5rem;
+}
+
+section.testimonial-grid article.testimonial::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--testimonial-bg-clr);
+    border-radius: 5px;
+    box-shadow: 2px 3px 6px 0px hsla(216, 27%, 20%, 0.24);
+    z-index: 1;
+}
+
+section.testimonial-grid article.testimonial:first-child::before {
+    position: absolute;
+    display: block;
+    content: '';
+    background-image: url('images/bg-quotes.png');
+    background-repeat: no-repeat;
+    top: -2.25rem;
+    left: -.45rem;
+    width: 55px;
+    height: 45px;
+    z-index: 0;
+}
+
+section.testimonial-grid article.testimonial > * {
+    position: relative;
+    z-index: 2; 
+}
+
+section.testimonial-grid article.testimonial .group-person {
+    display: flex;
+    gap: .75rem;
+}
+
+article.testimonial p:not(.group p) {
+    font-size: 1rem;
+}
+
+section.testimonial-grid article.testimonial img:not(img.quotes) {
+    border-radius: 50%;
+    width: 2rem;
+}
+
+section.cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid var(--main-bg-clr);
+}
+
+article.cta-2-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    margin-inline: 20%;
+    padding: 2.5rem 5rem;
+    width: 100%;
+    background-color: var(--intro-bg-clr);
+    border-radius: 5px;
+    transform: translateY(50%);
+    box-shadow: 6px 6px 5px 0 hsla(219, 54%, 5%, 0.281);
+}
+
+article.cta-2-flex h3 {
+    font-size: 1.75rem;
+}
+
+article.cta-2-flex h3,
+article.cta-2-flex p {
+    max-width: 80ch;
+}
+
+article.cta-2-flex p {
+    line-height: 1.7;
+}
+
+article.cta-2-flex .group-flex {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+article.cta-2-flex input {
+    padding: 1rem 1.5rem;
+    border-radius: 2rem;
+    flex: 1;
+    outline: none;
+    border: none;
+}
+
+article.cta-2-flex input::placeholder {
+    color: lightgray;
+}
+
+article.cta-2-flex button {
+    cursor: pointer;
+    padding: .75rem 1.5rem;
+    border-radius: 2rem;
+    min-width: 27.5%;
+    border: none;
+    color: var(--font-clr-h);
+    background-image: linear-gradient(to right, var(--cta-gradient-teal), var(--cta-gradient-cyan));
+}
+
+article.cta-2-flex button:hover,
+article.cta-2-flex button:focus-visible {
+    background-image: linear-gradient(to right, hsl(176, 68%, 74%), hsl(198, 60%, 60%));
+}
+
+
+
+/*     ===============================================================      */
+
+footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 13rem 8rem;
+    border-top: 3px solid var(--main-bg-clr);
+    background-color: var(--footer-bg-clr);
+}
+
+.footer-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    max-width: 100%;
+}
+
+footer .group-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    color: var(--font-clr-p);
+    max-width: 40ch;
+}
+
+footer .group-flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--font-clr-p);
+}
+
+footer li {
+    list-style: none;
+}
+
+footer ul:not(.group-flex-icons ul) {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.group-flex-column-a {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: 150ms ease-in-out;
+}
+
+.group-flex-column-a a:hover,
+.group-flex-column-a a:focus-visible {
+    color: var(--font-clr-h);
+}
+
+.group-flex-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.group-flex-icons ul {
+    display: flex;
+    gap: 1rem;
+}
+
+.group-flex-icons ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.group-flex-icons a {
+    display: flex;
+    padding: .65rem;
+    border: 1px solid var(--font-clr-h);
+    border-radius: 50%;
+}
+
+.group-flex-icons a:hover,
+.group-flex-icons a:focus-visible {
+    border-color: var(--cta-gradient-teal);
+}
+
+.group-flex-icons a:hover path,
+.group-flex-icons a:focus-visible path {
+    fill: var(--cta-gradient-teal);
+}
