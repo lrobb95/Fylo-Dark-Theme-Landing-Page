@@ -358,7 +358,7 @@ section.testimonial-grid article.testimonial > * {
 
 section.testimonial-grid article.testimonial .group-person {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     gap: .75rem;
 }
 
@@ -389,7 +389,7 @@ section.cta {
     width: 100%;
 }
 
-article.cta-2-flex {
+form.cta-2-flex {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -405,27 +405,27 @@ article.cta-2-flex {
     box-shadow: 6px 6px 5px 0 hsla(219, 54%, 5%, 0.281);
 }
 
-article.cta-2-flex h3 {
+form.cta-2-flex h3 {
     font-size: var(--fs-h3);
 }
 
-article.cta-2-flex h3,
-article.cta-2-flex p {
+form.cta-2-flex h3,
+form.cta-2-flex p {
     max-width: 80ch;
 }
 
-article.cta-2-flex p {
+form.cta-2-flex p {
     line-height: 1.7;
 }
 
-article.cta-2-flex .group-flex {
+form.cta-2-flex .group-flex {
     display: flex;
     gap: 1.5rem;
     width: 100%;
     margin-top: 1rem;
 }
 
-article.cta-2-flex input {
+form.cta-2-flex input {
     padding: 1rem 1.5rem;
     border-radius: 2rem;
     flex: 1;
@@ -433,11 +433,15 @@ article.cta-2-flex input {
     border: none;
 }
 
-article.cta-2-flex input::placeholder {
+form.cta-2-flex input::placeholder {
     color: lightgray;
 }
 
-article.cta-2-flex button {
+form.cta-2-flex div.errorMessage {
+    display: none;
+}
+
+form.cta-2-flex button {
     cursor: pointer;
     padding: 1rem 1.5rem;
     border-radius: 2rem;
@@ -447,8 +451,8 @@ article.cta-2-flex button {
     background-image: linear-gradient(to right, var(--cta-gradient-teal), var(--cta-gradient-cyan));
 }
 
-article.cta-2-flex button:hover,
-article.cta-2-flex button:focus-visible {
+form.cta-2-flex button:hover,
+form.cta-2-flex button:focus-visible {
     background-image: linear-gradient(to right, hsl(176, 68%, 74%), hsl(198, 60%, 60%));
 }
 
@@ -568,17 +572,18 @@ footer ul:not(.group-flex-icons ul) {
     }
 
     .productivity-flex .content-wrap {
-    flex-direction: column;
-}
+        flex-direction: column;
+    }
 }
 
 @media screen and (width <= 980px) {
     section.testimonial-grid {
         flex-direction: column;
     }
+}
 
 @media screen and (width <= 956px) {
-    article.cta-2-flex {
+    form.cta-2-flex {
         padding: 2.5rem 1.5rem;
     }
 }
@@ -594,17 +599,17 @@ footer ul:not(.group-flex-icons ul) {
 }
 
 @media screen and (width <= 767px) {
-    article.cta-2-flex {
+    form.cta-2-flex {
         padding: 2.5rem 1.5rem;
     }
 
     section.testimonial-grid article.testimonial {
-    padding: 1.5rem 1rem;
-}
+        padding: 1.5rem 1rem;
+    }
 }
 
 @media screen and (width <= 740px) {
-    article.cta-2-flex .group-flex {
+    form.cta-2-flex .group-flex {
         flex-direction: column;
     }
 }
@@ -627,13 +632,13 @@ footer ul:not(.group-flex-icons ul) {
         min-width: 100%;
     }
 
-    article.cta-2-flex {
+    form.cta-2-flex {
         flex-direction: column;
         padding: 2rem 1rem;
         width: 100%;
     }
 
-    article.cta-2-flex .group-flex {
+    form.cta-2-flex .group-flex {
         flex-direction: column;
     }
 }
@@ -647,7 +652,7 @@ footer ul:not(.group-flex-icons ul) {
         padding: 4rem 2rem;
     }
     
-    article.cta-2-flex {
+    form.cta-2-flex {
         margin-inline: 5%;
     }
 
@@ -665,7 +670,7 @@ footer ul:not(.group-flex-icons ul) {
 }
 
 @media screen and (width <= 414px) {
-    article.cta-2-flex .group-flex {
+    form.cta-2-flex .group-flex {
         flex-direction: column;
     }
 }
