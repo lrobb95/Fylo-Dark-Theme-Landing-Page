@@ -15,7 +15,13 @@
     /*    font settings    */
     --ff-sans: 'Open Sans', sans-serif;
     --ff-raleway: 'Raleway', Arial;
-    --fs-p: .875rem;
+    --fs-p: clamp(.875rem, 1.5vw, 1rem);
+    --fs-p-card: clamp(.75rem, 1.25vw, 1rem);
+    --fs-h1: clamp(1.25rem, 4vw, 2rem);
+    --fs-h2: clamp(1.15rem, 2vw, 1.75rem);
+    --fs-h3: clamp(1.15rem, 1.75vw, 1.65rem);
+    --fs-h4: clamp(1.05rem, 1.5vw, 1.5rem);
+    --fs-h5: clamp(.75rem, 1.5vw, 1.3rem);
     --font-clr-h: hsl(0, 0%, 100%);
     --font-clr-p: hsl(0, 0%, 80%);
     --fw-400: 400;
@@ -37,10 +43,6 @@ svg {
 }
 
 body {
-    background-image: url('images/bg-curvy-desktop.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: auto;
     font-size: var(--fs-p);
     font-weight: var(--fw-400);
     color: var(--font-clr-p);
@@ -53,6 +55,12 @@ header {
     padding: 3.5rem 3.5rem;
     background-color: var(--intro-bg-clr);
     border-bottom: 3px solid var(--intro-bg-clr);
+}
+
+@media screen and (width <= 500px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
 }
 
 h1,
@@ -71,16 +79,31 @@ nav {
     justify-content: space-between;
 }
 
+nav img {
+    width: clamp(5rem, 15vw, 10rem);
+}
+
 .nav-links ul {
     display: flex;
     list-style-type: none;
     gap: 2.5rem;
 }
 
+@media screen and (width <= 500px) {
+    .nav-links ul {
+        gap: 1.25rem;
+    }
+}
+
+.nav-links ul li {
+    font-size: var(--fs-p);
+}
+
 .nav-links a {
     color: var(--font-clr-p);
     font-family: var(--ff-raleway);
     text-decoration: none;
+    font-size: clamp(.65rem, 2vw, .895rem);
 }
 
 .nav-links a:hover {
@@ -99,6 +122,8 @@ main {
 
 section {
     min-width: 100%;
+    width: 100%;
+    max-width: 100%;
 }
 
 section p {
@@ -112,7 +137,7 @@ section:not(.cta-flex) {
 
 /*                  Section 1                       */
 
-.cta-flex {
+section.cta-flex {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -134,8 +159,18 @@ section.cta-flex .group {
     gap: 2rem;
 }
 
+@media screen and (width <= 500px) {
+    section.cta-flex {
+        padding: 0 1.5rem 2.5rem 1.5rem;
+    }
+
+    section.cta-flex .group {
+        max-width: 100%;
+    }
+}
+
 /*    Context: if the section has an h1 with a direct child of p, then apply these styles.    */
-.cta-flex:has(h1 + p) {
+section.cta-flex:has(h1 + p) {
     text-align: center;
 }
 /*    Sorry! Had to do it because the original code was messing with 
@@ -148,7 +183,7 @@ section.cta-flex .group {
 
 section.cta-flex h1 {
     font-weight: var(--fw-700);
-    font-size: 2rem;
+    font-size: var(--fs-h1);
     max-width: 35ch;
     line-height: 1.5;
 }
@@ -180,7 +215,7 @@ section.cta-flex button {
 
 /*                  Section 2                       */
 
-.product-info-grid {
+section.product-info-grid {
     display: grid;
     place-items: center;
     justify-content: center;
@@ -206,6 +241,7 @@ section.cta-flex button {
 }
 
 .product-info-grid .group-text h4 {
+    font-size: var(--fs-h4);
     line-height: 1.1;
 }
 
@@ -213,13 +249,26 @@ section.cta-flex button {
     line-height: 1.25;
 }
 
-.productivity-flex {
+/*              Section 3                 */
+
+section.productivity-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 14rem;
+    padding-inline: 2rem;
+}
+
+.productivity-flex .content-wrap {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 2.5rem;
-    padding-top: 5rem;
-    padding-bottom: 14rem;
+}
+
+.productivity-flex .content-wrap img:not(.group-flex img) {
+    width: 100%;
 }
 
 .productivity-flex .group-flex {
@@ -230,7 +279,7 @@ section.cta-flex button {
 }
 
 .group-flex h2 {
-    font-size: calc(var(--fs-p) * 2);
+    font-size: var(--fs-h2);
     line-height: 1.35;
     max-width: 15ch;
     padding-bottom: .25rem;
@@ -252,12 +301,18 @@ section.cta-flex button {
     color: var(--font-clr-p);
 }
 
+/*              Section 4              */
+
+/*    Grid was acting odd for this and finding new breakpoints were getting to be constant,
+      so I switched it to flexbox.    */
 section.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 375px);
+    display: flex;
     align-items: center;
     justify-content: center;
+    flex: 1;
+    max-width: 100%;
     gap: 2rem;
+    padding-inline: 2rem;
     padding-bottom: 8rem;
 }
 
@@ -303,23 +358,35 @@ section.testimonial-grid article.testimonial > * {
 
 section.testimonial-grid article.testimonial .group-person {
     display: flex;
+    align-items: flex-end;
     gap: .75rem;
 }
 
+section.testimonial-grid article.testimonial .group-person p {
+    font-size: var(--fs-p-card);
+}
+
 article.testimonial p:not(.group p) {
-    font-size: 1rem;
+    font-size: var(--fs-p-card);
+}
+
+article.testimonial h5 {
+    font-size: var(--fs-h5);
 }
 
 section.testimonial-grid article.testimonial img:not(img.quotes) {
     border-radius: 50%;
-    width: 2rem;
+    width: clamp(1.5rem, 5vw, 2rem);
 }
+
+/*               Section 5               */
 
 section.cta {
     display: flex;
     align-items: center;
     justify-content: center;
     border-bottom: 3px solid var(--main-bg-clr);
+    width: 100%;
 }
 
 article.cta-2-flex {
@@ -339,7 +406,7 @@ article.cta-2-flex {
 }
 
 article.cta-2-flex h3 {
-    font-size: 1.75rem;
+    font-size: var(--fs-h3);
 }
 
 article.cta-2-flex h3,
@@ -387,7 +454,7 @@ article.cta-2-flex button:focus-visible {
 
 
 
-/*     ===============================================================      */
+/*               Footer                 */
 
 footer {
     display: flex;
@@ -480,4 +547,125 @@ footer ul:not(.group-flex-icons ul) {
 .group-flex-icons a:hover path,
 .group-flex-icons a:focus-visible path {
     fill: var(--cta-gradient-teal);
+}
+
+/*                   Media Queries                   */
+
+@media screen and (width <= 1295px) {
+
+    section.testimonial-grid {
+        align-items: flex-start;
+    }
+
+    footer {
+        padding: 13rem 4rem;
+    }
+}
+
+@media screen and (width <= 1040px) {
+    footer {
+        padding: 13rem 1rem;
+    }
+
+    .productivity-flex .content-wrap {
+    flex-direction: column;
+}
+}
+
+@media screen and (width <= 980px) {
+    section.testimonial-grid {
+        flex-direction: column;
+    }
+
+@media screen and (width <= 956px) {
+    article.cta-2-flex {
+        padding: 2.5rem 1.5rem;
+    }
+}
+
+@media screen and (width <= 865px) {
+    footer {
+        align-items: center;
+    }
+    footer .footer-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media screen and (width <= 767px) {
+    article.cta-2-flex {
+        padding: 2.5rem 1.5rem;
+    }
+
+    section.testimonial-grid article.testimonial {
+    padding: 1.5rem 1rem;
+}
+}
+
+@media screen and (width <= 740px) {
+    article.cta-2-flex .group-flex {
+        flex-direction: column;
+    }
+}
+
+@media screen and (width <= 650px) {
+    section.product-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section.productivity-flex {
+        flex-direction: column;
+        padding-inline: 1.5rem;
+    }
+
+    .productivity-flex img:not(.group-flex img) {
+        max-width: 100%;
+    }
+
+    .productivity-flex .group-flex h2 {
+        min-width: 100%;
+    }
+
+    article.cta-2-flex {
+        flex-direction: column;
+        padding: 2rem 1rem;
+        width: 100%;
+    }
+
+    article.cta-2-flex .group-flex {
+        flex-direction: column;
+    }
+}
+
+@media screen and (width <= 500px) {
+    section.productivity-flex {
+        padding-bottom: 9rem;
+    }
+    
+    section.testimonial-grid {
+        padding: 4rem 2rem;
+    }
+    
+    article.cta-2-flex {
+        margin-inline: 5%;
+    }
+
+    footer .footer-container {
+        flex-direction: column;
+    }
+
+    .group-flex-column-a ul {
+        gap: .5rem;
+    }
+
+    footer {
+        padding-bottom: 4rem;
+    }
+}
+
+@media screen and (width <= 414px) {
+    article.cta-2-flex .group-flex {
+        flex-direction: column;
+    }
 }
