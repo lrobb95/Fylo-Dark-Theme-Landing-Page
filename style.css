@@ -323,6 +323,13 @@ section.testimonial-grid article.testimonial {
     border-radius: 5px;
     padding: 2.5rem 2rem;
     gap: 1.5rem;
+    max-width: 475px;
+}
+
+@media screen and (width <= 500px) {
+    section.testimonial-grid article.testimonial {
+        max-width: 300px;
+    }
 }
 
 section.testimonial-grid article.testimonial::after {
