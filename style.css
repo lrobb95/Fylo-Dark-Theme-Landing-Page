@@ -19,7 +19,7 @@
     --fs-p-card: clamp(.75rem, 1.25vw, 1rem);
     --fs-h1: clamp(1.25rem, 4vw, 2rem);
     --fs-h2: clamp(1.15rem, 2vw, 1.75rem);
-    --fs-h3: clamp(1.15rem, 1.75vw, 1.65rem);
+    --fs-h3: clamp(1.3rem, 1.7vw, 1.65rem);
     --fs-h4: clamp(1.05rem, 1.5vw, 1.5rem);
     --fs-h5: clamp(.75rem, 1.5vw, 1.3rem);
     --font-clr-h: hsl(0, 0%, 100%);
@@ -326,12 +326,6 @@ section.testimonial-grid article.testimonial {
     max-width: 475px;
 }
 
-@media screen and (width <= 500px) {
-    section.testimonial-grid article.testimonial {
-        max-width: 375px;
-    }
-}
-
 section.testimonial-grid article.testimonial::after {
     content: '';
     position: absolute;
@@ -396,13 +390,13 @@ section.cta {
     width: 100%;
 }
 
-form.cta-2-flex {
+.group-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 1.5rem;
+    gap: 2rem;
     margin-inline: 20%;
     padding: 2.5rem 5rem;
     width: 100%;
@@ -412,30 +406,47 @@ form.cta-2-flex {
     box-shadow: 6px 6px 5px 0 hsla(219, 54%, 5%, 0.281);
 }
 
-form.cta-2-flex h3 {
+.group-content form {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+@media screen and (width <= 1303px) {
+    .group-content form {
+        flex-direction: column;
+    }
+
+    form button {
+        width: 100%;
+    }
+}
+
+.cta .group-content h3 {
     font-size: var(--fs-h3);
 }
 
-form.cta-2-flex h3,
-form.cta-2-flex p {
+.cta h3,
+.cta p {
     max-width: 80ch;
 }
 
-form.cta-2-flex p {
+.cta p {
+    font-size: var(--fs-p);
     line-height: 1.7;
 }
 
-form.cta-2-flex .group-flex {
-    display: flex;
+form.cta-2-flex .group {
+    flex-direction: column;
     gap: 1.5rem;
     width: 100%;
-    margin-top: 1rem;
 }
 
 form.cta-2-flex input {
     padding: 1rem 1.5rem;
     border-radius: 2rem;
-    flex: 1;
+    width: 100%;
     outline: none;
     border: none;
 }
@@ -445,7 +456,7 @@ form.cta-2-flex input::placeholder {
 }
 
 form.cta-2-flex div.errorMessage {
-    display: none;
+    margin-left: 5%;
 }
 
 form.cta-2-flex button {
@@ -453,6 +464,7 @@ form.cta-2-flex button {
     padding: 1rem 1.5rem;
     border-radius: 2rem;
     min-width: 27.5%;
+    max-height: fit-content;
     border: none;
     color: var(--font-clr-h);
     background-image: linear-gradient(to right, var(--cta-gradient-teal), var(--cta-gradient-cyan));
@@ -586,6 +598,7 @@ footer ul:not(.group-flex-icons ul) {
 @media screen and (width <= 980px) {
     section.testimonial-grid {
         flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -593,21 +606,30 @@ footer ul:not(.group-flex-icons ul) {
     form.cta-2-flex {
         padding: 2.5rem 1.5rem;
     }
+
+    footer {
+        padding-top: 14rem;
+    }
 }
 
 @media screen and (width <= 865px) {
     footer {
         align-items: center;
+        padding-top: 15rem;
     }
     footer .footer-container {
         flex-direction: column;
         gap: 1rem;
     }
+
+    .group-content {
+        width: 100%;
+    }
 }
 
 @media screen and (width <= 767px) {
     form.cta-2-flex {
-        padding: 2.5rem 1.5rem;
+        padding: 1.5rem 1rem;
     }
 
     section.testimonial-grid article.testimonial {
@@ -615,9 +637,9 @@ footer ul:not(.group-flex-icons ul) {
     }
 }
 
-@media screen and (width <= 740px) {
-    form.cta-2-flex .group-flex {
-        flex-direction: column;
+@media screen and (width <= 700px) {
+    .group-content {
+        margin-inline: 5%;
     }
 }
 
@@ -639,9 +661,8 @@ footer ul:not(.group-flex-icons ul) {
         min-width: 100%;
     }
 
-    form.cta-2-flex {
-        flex-direction: column;
-        padding: 2rem 1rem;
+    .group-content {
+        padding: 2rem 1.5rem;
         width: 100%;
     }
 
@@ -651,16 +672,16 @@ footer ul:not(.group-flex-icons ul) {
 }
 
 @media screen and (width <= 500px) {
+
+}
+
+@media screen and (width <= 500px) {
     section.productivity-flex {
         padding-bottom: 9rem;
     }
     
     section.testimonial-grid {
         padding: 4rem 2rem;
-    }
-    
-    form.cta-2-flex {
-        margin-inline: 5%;
     }
 
     footer .footer-container {

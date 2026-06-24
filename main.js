@@ -17,10 +17,8 @@ form.addEventListener('submit', (e) => {
     if (message.length > 0) {
         e.preventDefault();
         getEmail.style.border = '1px solid rgb(255, 0, 0)';
-        errorMessage.style.display = 'flex';
-        errorMessage.style.alignContent = 'flex-start';
-        errorMessage.style.width = '100%';
-        errorMessage.style.marginLeft = 'clamp(1rem, 2.5vw, 3rem)';
+        errorMessage.style.textAlign = 'left';
+        errorMessage.style.marginTop = '.5rem';
         errorMessage.style.fontSize = 'var(--fs-p)';
         errorMessage.style.color = 'rgba(255, 0, 0, .35)';
         errorMessage.style.fontStyle = 'italic';

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" href="style.css">
@@ -108,16 +108,18 @@
       </article>
     </section>
     <section class="cta">
-      <form id="form" class="cta-2-flex" novalidate>
+      <div class="group-content">
         <h3>Get early access today</h3>
         <p>It only takes a minute to sign up and our free starter tier is extremely generous. If you have any 
            questions, our support team would be happy to help you.</p>
-        <div class="group-flex">
-          <input id="sign-up" type="email" placeholder="email@example.com">
-          <div id="errorMessage" class="errorMessage"></div>
+        <form name="sign-up" id="form" class="cta-2-flex" novalidate>
+          <div class="group">
+            <input id="sign-up" type="email" placeholder="email@example.com">
+            <div id="errorMessage" class="errorMessage"></div>
+          </div>
           <button id="submit-btn" type="submit">Get Started For Free</button>
-        </div>
-      </form>
+        </form>
+      </div>
     </section>
   </main>
   <footer>
