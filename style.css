@@ -328,7 +328,7 @@ section.testimonial-grid article.testimonial {
 
 @media screen and (width <= 500px) {
     section.testimonial-grid article.testimonial {
-        max-width: 300px;
+        max-width: 375px;
     }
 }
 
